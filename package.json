@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "node dev-server",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -20,6 +20,7 @@
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
+    "concurrently": "^6.0.0",
     "typescript": "~4.0.0"
   },
   "private": true
