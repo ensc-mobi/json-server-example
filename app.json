@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "example-web-api",
-    "slug": "example-web-api",
+    "name": "json-server-example",
+    "slug": "json-server-example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
