@@ -4,19 +4,19 @@ Ce template permet de démarrer un projet [React Native](https://reactnative.dev
 
 Le projet React Native est contruit et géré avec [Expo](https://expo.io/).
 
-## Installer JSON Server
+## Installer les dépendances
+
+```bash
+npm ci
+```
+
+## JSON Server
 
 Le serveur JSON Server enregistre les données dans le fichier `dev-server/db.json`. Ce fichier est versionné et peut ainsi fournir un jeu de données initial au démarrage de l'application. Le fichier de base de données est automatiquement mis à jour, les modification peuvent ensuite être persistées dans le gestionnaire de sources.
 
-La commande ci-dessous permet d'installer JSON Server globalement.
-
-```bash
-npm install -g json-server
-```
-
 ## Démarrer le serveur de développement
 
-La commande ci-dessous démarre le serveur de développement de Expo ainsi que le serveur JSON Server simultanément.
+La commande ci-dessous démarre le serveur de développement de Expo, le serveur JSON Server et un tunnel ngrok simultanément.
 
 ```bash
 npm start
@@ -24,20 +24,16 @@ npm start
 
 > Ne pas utiliser la commande `expo start`, qui ne démarre que l'application mobile !
 
-La page d'accueil du serveur peut être visualisée depuis cette [URL](http://localhost:3000/).
+* La page d'accueil du serveur JSON server peut être visualisée depuis cette [URL](http://localhost:3000/).
+* La console du serveur expo peut être visualisée depuis cette [URL](http://localhost:19002/).
+* Des informations sur le tunnel peuvent être obtenues depuis cette [URL](http://127.0.0.1:4040/).
 
 ## Accéder aux données du serveur depuis un terminal mobile
 
-La solution précédente fonctionne uniquement pour les déploiements web et émulateur.
+Afin que JSON server soit accéssible localement mais aussi depuis un terminal mobile, un tunnel est monté avec [ngrok](https://www.npmjs.com/package/ngrok).
 
-La commande suivante permet d'ouvrir un tunnel afin d'accéder au JSON Server local depuis n'importe où.
+Lors du démarrage du serveur l'URL du tunnel est ajoutée dans le fichier `.env.json` à la racine du projet. Ce fichier ne dois pas être versionné et sera écrasé à chaque démarrage du serveur.
 
-```bash
-npx ngrok http 3000
-```
+Une fois le serveur de développement démarré il est possible d'obtenir des informations au sujet du tunnel via cette [URL](http://127.0.0.1:4040).
 
-Vous devez également remplacer la valeur de la variable `rootEndpoint` dans le fichier `services/test.service.ts` pour indiquer l'URL du tunnel à la place de `http://localhost:3000`.
-
-![ngrok example](ngrok-tunnel.png)
-
-Vous pouvez alors utiliser les données du serveur depuis l'application mobile déployée.
+Dans le fichier `services/test.service.ts` la variable `rootEndpoint` est unitialisé avec la valeur issue du fichier `.env.json`;
