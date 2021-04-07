@@ -1,6 +1,8 @@
+import env from '../.env.json';
+
 // Use ngrok to access server data from deployed app on mobile (see README.md)
-//const rootEndpoint = "http://537974e9a1bd.ngrok.io";
-const rootEndpoint = "http://localhost:3000";
+// ngrok endpoint is generated in the .env.json
+const rootEndpoint = env.JSON_SERVER_URL || 'http://localhost:3000';
 
 class TestService {
   getCollections(): Promise<Array<string>> {
